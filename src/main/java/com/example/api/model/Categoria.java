@@ -14,12 +14,8 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank
     private String nome;
 
-    @NotNull
-    @NotBlank
     private String descricao;
 
     public Categoria(String nome, String descricao) {
