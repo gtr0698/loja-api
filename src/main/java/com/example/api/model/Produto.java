@@ -2,7 +2,9 @@ package com.example.api.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Produto {
@@ -11,13 +13,19 @@ public class Produto {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String nome;
 
+    @NotNull
     @ManyToOne
     private Categoria categoria;
 
+    @NotNull
     private int quantidade;
 
+    @NotNull
     private int codigo;
 
     private String descricao;

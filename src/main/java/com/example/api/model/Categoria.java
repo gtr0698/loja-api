@@ -1,11 +1,7 @@
 package com.example.api.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class Categoria {
@@ -14,6 +10,9 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String nome;
 
     private String descricao;
