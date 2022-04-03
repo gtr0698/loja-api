@@ -18,11 +18,11 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public Produto salvar(CreateProdutoRequestDto produto){
-        Produto produtoExistente = produtoRepository.findByCodigo(produto.getCodigo());
+        /*Produto produtoExistente = produtoRepository.findByCodigo(produto.getCodigo());
 
         if(produtoExistente != null && produtoExistente.equals(produto)){
             throw new RegraException("O produto já está cadastrado no sistema");
-        }
+        }*/
 
         Produto produtoNovo = produto.convertToModel();
 

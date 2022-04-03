@@ -19,11 +19,11 @@ public class CategoriaService {
 
 
     public Categoria salvar(CreateCategoriaRequestDto categoria){
-        Categoria categoriaExistente = categoriaRepository.findByNome(categoria.getNome());
+        /*Categoria categoriaExistente = categoriaRepository.findByNome(categoria.getNome());
 
         if(categoriaExistente != null && categoriaExistente.equals(categoria)){
             throw new RegraException("Já existe uma categoria criada com esse nome");
-        }
+        }*/
 
         Categoria categoriaNova = categoria.convertToModel();
 
