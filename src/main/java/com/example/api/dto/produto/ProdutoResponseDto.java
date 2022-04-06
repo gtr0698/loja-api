@@ -3,6 +3,8 @@ package com.example.api.dto.produto;
 import com.example.api.model.Categoria;
 import com.example.api.model.Produto;
 
+import java.util.List;
+
 public class ProdutoResponseDto {
 
     private Long id;

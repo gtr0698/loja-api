@@ -1,8 +1,11 @@
 package com.example.api.service;
 
+import com.example.api.dto.categoria.CategoriaResponseDto;
 import com.example.api.dto.produto.CreateProdutoRequestDto;
+import com.example.api.dto.produto.ProdutoResponseDto;
 import com.example.api.dto.produto.UpdateProdutoRequestDto;
 import com.example.api.exception.RegraException;
+import com.example.api.model.Categoria;
 import com.example.api.model.Produto;
 import com.example.api.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +66,12 @@ public class ProdutoService {
         }
 
         return produto.get();
+    }
+
+
+    public List<Produto> listaPorCategoria(CategoriaResponseDto categoria) {
+        List<Produto> listaCategorias = produtoRepository.findByCategoriaId(categoria.getId());
+
+        return listaCategorias;
     }
 }

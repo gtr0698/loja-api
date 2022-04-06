@@ -15,6 +15,7 @@ public class CategoriaResponseDto {
     }
 
     public Long getId() {
+
         return id;
     }
 

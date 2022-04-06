@@ -1,6 +1,7 @@
 package com.example.api.exception;
 
 import com.example.api.dto.categoria.CreateCategoriaRequestDto;
+import com.example.api.dto.categoria.UpdateCategoriaRequestDto;
 import com.example.api.model.Categoria;
 import com.example.api.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ public class ProibeNomeDuplicadoCategoriaValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return CreateCategoriaRequestDto.class.isAssignableFrom(clazz);
+
+        return CreateCategoriaRequestDto.class.isAssignableFrom(clazz)
+                || UpdateCategoriaRequestDto.class.isAssignableFrom(clazz);
     }
 
     @Override

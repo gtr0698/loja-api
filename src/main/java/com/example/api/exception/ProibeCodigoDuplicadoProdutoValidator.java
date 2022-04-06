@@ -1,5 +1,6 @@
 package com.example.api.exception;
 
+import com.example.api.dto.categoria.UpdateCategoriaRequestDto;
 import com.example.api.dto.produto.CreateProdutoRequestDto;
 import com.example.api.model.Produto;
 import com.example.api.repository.ProdutoRepository;
@@ -18,7 +19,8 @@ public class ProibeCodigoDuplicadoProdutoValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return CreateProdutoRequestDto.class.isAssignableFrom(clazz);
+        return CreateProdutoRequestDto.class.isAssignableFrom(clazz)
+                || UpdateCategoriaRequestDto.class.isAssignableFrom(clazz);
     }
 
     @Override
