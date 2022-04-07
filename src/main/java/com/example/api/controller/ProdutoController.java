@@ -79,8 +79,8 @@ public class ProdutoController {
         return ResponseEntity.ok(listaProdutos);
     }
 
-    /*
-    @GetMapping("/categoria/{categoriaNome}")
+
+    @GetMapping("/categoria/nome/{categoriaNome}")
     public ResponseEntity<List<ProdutoResponseDto>>ListaProdutoNomeCategoria(
             @PathVariable String categoriaNome){
 
@@ -89,5 +89,5 @@ public class ProdutoController {
 
         return ResponseEntity.ok(listaProdutoNome);
     }
-    */
+
 }
