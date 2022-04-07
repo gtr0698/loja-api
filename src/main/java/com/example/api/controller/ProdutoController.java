@@ -71,7 +71,7 @@ public class ProdutoController {
 
     @GetMapping("/categoria/{categoriaId}")
     public ResponseEntity<List<ProdutoResponseDto>>listarProdutoCategoria(
-            @PathVariable CategoriaResponseDto categoriaId){
+            @PathVariable Long categoriaId){
 
         List<ProdutoResponseDto> listaProdutos = produtoService.listaPorCategoria(categoriaId)
                 .stream().map(produto -> new ProdutoResponseDto(produto)).collect(Collectors.toList());
@@ -79,4 +79,15 @@ public class ProdutoController {
         return ResponseEntity.ok(listaProdutos);
     }
 
+    /*
+    @GetMapping("/categoria/{categoriaNome}")
+    public ResponseEntity<List<ProdutoResponseDto>>ListaProdutoNomeCategoria(
+            @PathVariable String categoriaNome){
+
+        List<ProdutoResponseDto> listaProdutoNome = produtoService.listaNomeCategoria(categoriaNome)
+                .stream().map(produto -> new ProdutoResponseDto(produto)).collect(Collectors.toList());
+
+        return ResponseEntity.ok(listaProdutoNome);
+    }
+    */
 }

@@ -1,16 +1,14 @@
 package com.example.api.service;
 
-import com.example.api.dto.categoria.CategoriaResponseDto;
 import com.example.api.dto.produto.CreateProdutoRequestDto;
-import com.example.api.dto.produto.ProdutoResponseDto;
 import com.example.api.dto.produto.UpdateProdutoRequestDto;
 import com.example.api.exception.RegraException;
-import com.example.api.model.Categoria;
 import com.example.api.model.Produto;
 import com.example.api.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,9 +67,15 @@ public class ProdutoService {
     }
 
 
-    public List<Produto> listaPorCategoria(CategoriaResponseDto categoria) {
-        List<Produto> listaCategorias = produtoRepository.findByCategoriaId(categoria.getId());
+    public List<Produto> listaPorCategoria(Long categoria) {
+        List<Produto> listaCategorias = produtoRepository.findByCategoriaId(categoria);
 
         return listaCategorias;
+    }
+
+    public List<Produto> listaNomeCategoria(String categorias) {
+        List<Produto> listaCategoriaNome = produtoRepository.findByCategoriaNome(categorias);
+
+        return listaCategoriaNome;
     }
 }
