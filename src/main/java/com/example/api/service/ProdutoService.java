@@ -8,6 +8,8 @@ import com.example.api.model.Produto;
 import com.example.api.repository.CategoriaRepository;
 import com.example.api.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -33,8 +35,8 @@ public class ProdutoService {
         return produtoRepository.save(produtoNovo);
     }
 
-    public List<Produto> listar(){
-        return produtoRepository.findAll();
+    public Page<Produto> listar(Pageable pageable){
+        return produtoRepository.findAll(pageable);
     }
 
     public Produto buscar(Long produtoId){

@@ -6,6 +6,7 @@ import com.example.api.dto.categoria.UpdateCategoriaRequestDto;
 import com.example.api.exception.ProibeNomeDuplicadoCategoriaValidator;
 import com.example.api.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,8 +32,8 @@ public class CategoriaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaResponseDto>>listar(){
-        List<CategoriaResponseDto> categorias = categoriaService.listar().stream()
+    public ResponseEntity<List<CategoriaResponseDto>>listar(Pageable pageable){
+        List<CategoriaResponseDto> categorias = categoriaService.listar(pageable).stream()
                 .map(categoria -> new CategoriaResponseDto(categoria)).collect(Collectors.toList());
 
         return ResponseEntity.ok(categorias);

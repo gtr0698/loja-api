@@ -8,6 +8,7 @@ import com.example.api.exception.ProibeCodigoDuplicadoProdutoValidator;
 import com.example.api.model.Categoria;
 import com.example.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProdutoResponseDto>>listar(){
-        List<ProdutoResponseDto> produtos = produtoService.listar().stream()
+    public ResponseEntity<List<ProdutoResponseDto>>listar(Pageable pageable){
+        List<ProdutoResponseDto> produtos = produtoService.listar(pageable).stream()
                 .map(produto -> new ProdutoResponseDto(produto)).collect(Collectors.toList());
 
         return ResponseEntity.ok(produtos);

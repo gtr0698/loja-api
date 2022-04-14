@@ -6,6 +6,8 @@ import com.example.api.exception.RegraException;
 import com.example.api.model.Categoria;
 import com.example.api.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class CategoriaService {
 
     }
 
-    public List<Categoria> listar(){
-        return categoriaRepository.findAll();
+    public Page<Categoria> listar(Pageable pageable){
+        return categoriaRepository.findAll(pageable);
     }
 
     public Categoria buscar(Long categoriaId){
