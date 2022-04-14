@@ -22,12 +22,11 @@ public class UpdateProdutoRequestDto {
     @NotNull
     private int quantidade;
 
-    @NotNull
-    private int codigo;
+    private String codigo;
 
     private String descricao;
 
-    public UpdateProdutoRequestDto(String nome, Categoria categoria, int quantidade, int codigo,
+    public UpdateProdutoRequestDto(String nome, Categoria categoria, int quantidade, String codigo,
                                    String descricao) {
         this.nome = nome;
         this.categoria = categoria;
@@ -48,7 +47,7 @@ public class UpdateProdutoRequestDto {
         return quantidade;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 

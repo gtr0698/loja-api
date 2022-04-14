@@ -26,11 +26,11 @@ public class Produto {
     private int quantidade;
 
     @NotNull
-    private int codigo;
+    private String codigo;
 
     private String descricao;
 
-    public Produto(String nome, Categoria categoria, int quantidade, int codigo, String descricao) {
+    public Produto(String nome, Categoria categoria, int quantidade, String codigo, String descricao) {
         this.nome = nome;
         this.categoria = categoria;
         this.quantidade = quantidade;
@@ -54,7 +54,7 @@ public class Produto {
         return quantidade;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
@@ -62,7 +62,7 @@ public class Produto {
         return descricao;
     }
 
-    public Produto atualizaProduto(String nome, Categoria categoria, int quantidade, int codigo,
+    public Produto atualizaProduto(String nome, Categoria categoria, int quantidade, String codigo,
                                    String descricao){
         this.nome = nome;
         this.categoria = categoria;

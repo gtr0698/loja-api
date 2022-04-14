@@ -3,7 +3,9 @@ package com.example.api.service;
 import com.example.api.dto.produto.CreateProdutoRequestDto;
 import com.example.api.dto.produto.UpdateProdutoRequestDto;
 import com.example.api.exception.RegraException;
+import com.example.api.model.Categoria;
 import com.example.api.model.Produto;
+import com.example.api.repository.CategoriaRepository;
 import com.example.api.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +18,17 @@ import java.util.Optional;
 public class ProdutoService {
 
     @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @Autowired
     private ProdutoRepository produtoRepository;
 
-    public Produto salvar(CreateProdutoRequestDto produto){
-        /*Produto produtoExistente = produtoRepository.findByCodigo(produto.getCodigo());
+    public Produto salvar(CreateProdutoRequestDto produtoDto){
+        Categoria categoria = categoriaRepository.findById(produtoDto.getCategoria().getId()).orElseThrow(() ->
+                new RegraException("Categoria não encontrada com o id = " + produtoDto.getCategoria().getId(), "Categoria")
+        );
 
-        if(produtoExistente != null && produtoExistente.equals(produto)){
-            throw new RegraException("O produto já está cadastrado no sistema");
-        }*/
-
-        Produto produtoNovo = produto.convertToModel();
+        Produto produtoNovo = produtoDto.convertToModel(categoria);
 
         return produtoRepository.save(produtoNovo);
     }
@@ -43,7 +46,7 @@ public class ProdutoService {
     public Produto atualizar(Long produtoId, UpdateProdutoRequestDto produtoRequest){
         Produto produto = verificaExistencia(produtoId);
         Produto produtoAtualizado = produto.atualizaProduto(produtoRequest.getNome(),
-                produtoRequest.getCategoria(), produtoRequest.getCodigo(), produtoRequest.getQuantidade(),
+                produtoRequest.getCategoria(),produtoRequest.getQuantidade(), produtoRequest.getCodigo(),
                 produtoRequest.getDescricao());
 
         return produtoRepository.save(produtoAtualizado);

@@ -1,17 +1,32 @@
 package com.example.api.dto.produto;
 
+import com.example.api.dto.categoria.CategoriaRequestDto;
 import com.example.api.model.Categoria;
 import com.example.api.model.Produto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class CreateProdutoRequestDto {
 
+    @NotBlank
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String nome;
-    private Categoria categoria;
+
+    @NotNull
+    private CategoriaRequestDto categoria;
+
+    @NotNull
     private int quantidade;
-    private int codigo;
+
+    private String codigo;
+
     private String descricao;
 
-    public CreateProdutoRequestDto(String nome, Categoria categoria, int quantidade, int codigo,
+    public CreateProdutoRequestDto(String nome, CategoriaRequestDto categoria, int quantidade, String codigo,
                                    String descricao) {
         this.nome = nome;
         this.categoria = categoria;
@@ -24,7 +39,7 @@ public class CreateProdutoRequestDto {
         return nome;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaRequestDto getCategoria() {
         return categoria;
     }
 
@@ -32,7 +47,7 @@ public class CreateProdutoRequestDto {
         return quantidade;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
@@ -40,11 +55,12 @@ public class CreateProdutoRequestDto {
         return descricao;
     }
 
-    public Produto convertToModel(){
-        return new Produto(nome, categoria, quantidade, codigo, descricao);
+    public Produto convertToModel(Categoria categoria){
+        return new Produto(nome, categoria, quantidade, codigo,descricao);
     }
 
     public CreateProdutoRequestDto() {
         super();
     }
+
 }

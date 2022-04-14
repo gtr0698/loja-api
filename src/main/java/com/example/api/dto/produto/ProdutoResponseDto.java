@@ -11,7 +11,7 @@ public class ProdutoResponseDto {
     private String nome;
     private Categoria categoria;
     private int quantidade;
-    private int codigo;
+    private String codigo;
     private String descricao;
 
     public ProdutoResponseDto(Produto produto) {
@@ -39,7 +39,7 @@ public class ProdutoResponseDto {
         return quantidade;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
