@@ -1,5 +1,7 @@
 package com.example.api.model;
 
+import com.example.api.validator.VerificaCodigoDuplicadoProduto;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -26,6 +28,7 @@ public class Produto {
     private int quantidade;
 
     @NotNull
+    @VerificaCodigoDuplicadoProduto
     private String codigo;
 
     private String descricao;
