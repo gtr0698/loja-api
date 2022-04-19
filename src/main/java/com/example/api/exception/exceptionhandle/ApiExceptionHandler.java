@@ -1,52 +1,40 @@
 package com.example.api.exception.exceptionhandle;
 
-import com.example.api.exception.RegraException;
-import org.springframework.http.HttpHeaders;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.ArrayList;
+import java.lang.reflect.Field;
+import java.util.List;
 
 @RestControllerAdvice
-public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+public class ApiExceptionHandler {
 
-    @ExceptionHandler(RegraException.class)
-    public ResponseEntity<Object> regraExptionHandle(RegraException ex, WebRequest request){
-        var status = HttpStatus.BAD_REQUEST;
+    @Autowired
+    private MessageSource messageSource;
 
-        var exceptionDto = new ExceptionDto();
-        exceptionDto.setStatus(status.value());
-        exceptionDto.setTitulo(ex.getMessage());
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ExceptionDto handler(MethodArgumentNotValidException ex){
 
-        return handleExceptionInternal(ex, exceptionDto, new HttpHeaders(), status, request);
-    }
+        ExceptionDto exceptionDto = new ExceptionDto("Um ou mais campos estão invalidos!");
 
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
 
-        var campos = new ArrayList<ExceptionDto.Campo>();
+        for(FieldError fieldError : fieldErrors){
+            String nome = fieldError.getField();
+            String mensagem = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 
-        for(ObjectError error : ex.getBindingResult().getAllErrors()) {
-            String nome = ((FieldError) error).getField();
-            String mensagem = error.getDefaultMessage();
-
-            campos.add(new ExceptionDto.Campo(nome, mensagem));
+            exceptionDto.adicionaCampoComErro(nome, mensagem);
         }
 
-        var exceptionDto = new ExceptionDto();
-        exceptionDto.setStatus(status.value());
-        exceptionDto.setTitulo("Um ou mais campos estão inválidos. "
-                + "Faça o preenchimento correto e tente novamente.");
-        exceptionDto.setCampos(campos);
-
-        return super.handleExceptionInternal(ex, exceptionDto, headers, status, request);
+        return exceptionDto;
     }
 }

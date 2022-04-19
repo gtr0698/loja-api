@@ -62,7 +62,8 @@ public class CategoriaService {
         Optional<Categoria> categoria = categoriaRepository.findById(categoriaId);
 
         if(categoria.isEmpty()){
-            throw new RegraException("Categoria não encontrada");
+
+            /*throw new RegraException().adicionaCampoComErro("Categoria","Categoria não encontrada")*/;
         }
 
         return categoria.get();

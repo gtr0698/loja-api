@@ -27,8 +27,8 @@ public class ProdutoService {
 
     public Produto salvar(CreateProdutoRequestDto produtoDto){
         Categoria categoria = categoriaRepository.findById(produtoDto.getCategoria().getId()).orElseThrow(() ->
-                new RegraException("Categoria não encontrada com o id = " + produtoDto.getCategoria().getId(), "Categoria")
-        );
+
+                new RegraException("Categoria não encontrada com o id = " + produtoDto.getCategoria().getId(), "Categoria"));
 
         Produto produtoNovo = produtoDto.convertToModel(categoria);
 
@@ -65,6 +65,7 @@ public class ProdutoService {
         Optional<Produto> produto = produtoRepository.findById(produtoId);
 
         if(produto.isEmpty()){
+
             throw new RegraException("Produto não encontrado");
         }
 

@@ -2,55 +2,34 @@ package com.example.api.exception.exceptionhandle;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExceptionDto {
 
-    private Integer status;
     private String titulo;
-    private List<Campo> campos;
+    private OffsetDateTime dataHora = OffsetDateTime.now();
+    private List<CampoErrorDto> listaCamposComErro = new ArrayList<>();
 
-    public static class Campo{
-
-        private String nome;
-        private String mensagem;
-
-        public Campo(String nome, String mensagem) {
-            this.nome = nome;
-            this.mensagem = mensagem;
-        }
-
-        public String getNome() {
-            return nome;
-        }
-
-        public String getMensagem() {
-            return mensagem;
-        }
+    public ExceptionDto(String titulo) {
+        this.titulo = titulo;
     }
 
-    public Integer getStatus() {
-        return status;
+    public void adicionaCampoComErro(String campo, String mensagem) {
+        CampoErrorDto campoErrorDto = new CampoErrorDto(campo, mensagem);
+        listaCamposComErro.add(campoErrorDto);
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public List<Campo> getCampos() {
-        return campos;
+    public OffsetDateTime getDataHora() {
+        return dataHora;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public void setCampos(List<Campo> campos) {
-        this.campos = campos;
+    public List<CampoErrorDto> getListaCamposComErro() {
+        return listaCamposComErro;
     }
 }
