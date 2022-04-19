@@ -1,5 +1,7 @@
 package com.example.api.model;
 
+import com.example.api.validator.VerificaNomeDuplicadoCategoria;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -13,6 +15,7 @@ public class Categoria {
     @NotBlank
     @NotEmpty
     @Size(min = 3, max = 50)
+    @VerificaNomeDuplicadoCategoria
     private String nome;
 
     private String descricao;
