@@ -3,6 +3,7 @@ package com.example.api.dto.produto;
 import com.example.api.dto.categoria.CategoriaRequestDto;
 import com.example.api.model.Categoria;
 import com.example.api.model.Produto;
+import com.example.api.validator.VerificaCodigoDuplicadoProduto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -22,6 +23,8 @@ public class CreateProdutoRequestDto {
     @NotNull
     private int quantidade;
 
+    @NotNull
+    @VerificaCodigoDuplicadoProduto
     private String codigo;
 
     private String descricao;

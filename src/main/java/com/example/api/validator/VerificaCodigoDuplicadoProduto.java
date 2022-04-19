@@ -12,9 +12,9 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = ValidadorDeCodigoDuplicadoProduto.class)
 public @interface VerificaCodigoDuplicadoProduto {
 
-    String message() default "Codigo já cadastrado no sistema!";
+    String message() default "Codigo já cadastrado no sistema";
 
     Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] playload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

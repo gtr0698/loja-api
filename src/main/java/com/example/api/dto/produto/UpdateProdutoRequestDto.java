@@ -1,6 +1,7 @@
 package com.example.api.dto.produto;
 
 import com.example.api.model.Categoria;
+import com.example.api.validator.VerificaCodigoDuplicadoProduto;
 
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
@@ -22,6 +23,8 @@ public class UpdateProdutoRequestDto {
     @NotNull
     private int quantidade;
 
+    @NotNull
+    @VerificaCodigoDuplicadoProduto
     private String codigo;
 
     private String descricao;
