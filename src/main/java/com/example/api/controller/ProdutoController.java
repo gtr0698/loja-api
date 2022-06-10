@@ -7,7 +7,6 @@ import com.example.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -24,7 +23,7 @@ public class ProdutoController {
     @GetMapping
     public ResponseEntity<List<ProdutoResponseDto>>listar(Pageable pageable){
         List<ProdutoResponseDto> produtos = produtoService.listar(pageable).stream()
-                .map(produto -> new ProdutoResponseDto(produto)).collect(Collectors.toList());
+                .map(ProdutoResponseDto::new).collect(Collectors.toList());
 
         return ResponseEntity.ok(produtos);
     }
@@ -64,7 +63,7 @@ public class ProdutoController {
             @PathVariable Long categoriaId){
 
         List<ProdutoResponseDto> listaProdutos = produtoService.listaPorCategoria(categoriaId)
-                .stream().map(produto -> new ProdutoResponseDto(produto)).collect(Collectors.toList());
+                .stream().map(ProdutoResponseDto::new).collect(Collectors.toList());
 
         return ResponseEntity.ok(listaProdutos);
     }
@@ -75,7 +74,7 @@ public class ProdutoController {
             @PathVariable String categoriaNome){
 
         List<ProdutoResponseDto> listaProdutoNome = produtoService.listaNomeCategoria(categoriaNome)
-                .stream().map(produto -> new ProdutoResponseDto(produto)).collect(Collectors.toList());
+                .stream().map(ProdutoResponseDto::new).collect(Collectors.toList());
 
         return ResponseEntity.ok(listaProdutoNome);
     }

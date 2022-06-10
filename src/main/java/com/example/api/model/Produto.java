@@ -28,7 +28,6 @@ public class Produto {
     private int quantidade;
 
     @NotNull
-    @VerificaCodigoDuplicadoProduto
     private String codigo;
 
     private String descricao;

@@ -63,7 +63,7 @@ public class CategoriaService {
 
         if(categoria.isEmpty()){
 
-            /*throw new RegraException().adicionaCampoComErro("Categoria","Categoria não encontrada")*/;
+            throw new RegraException("Categoria não encontrada");
         }
 
         return categoria.get();

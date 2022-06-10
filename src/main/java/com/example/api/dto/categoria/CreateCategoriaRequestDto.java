@@ -2,7 +2,6 @@ package com.example.api.dto.categoria;
 
 import com.example.api.model.Categoria;
 import com.example.api.validator.VerificaNomeDuplicadoCategoria;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
