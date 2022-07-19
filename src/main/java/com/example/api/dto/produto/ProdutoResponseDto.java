@@ -13,6 +13,7 @@ public class ProdutoResponseDto {
     private int quantidade;
     private String codigo;
     private String descricao;
+    private Boolean destaque;
 
     public ProdutoResponseDto(Produto produto) {
         this.id = produto.getId();
@@ -21,6 +22,7 @@ public class ProdutoResponseDto {
         this.quantidade = produto.getQuantidade();
         this.codigo = produto.getCodigo();
         this.descricao = produto.getDescricao();
+        this.destaque = produto.getDestaque();
     }
 
     public Long getId() {
@@ -45,5 +47,13 @@ public class ProdutoResponseDto {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Boolean getDestaque() {
+        return destaque;
+    }
+
+    public ProdutoResponseDto(){
+        super();
     }
 }

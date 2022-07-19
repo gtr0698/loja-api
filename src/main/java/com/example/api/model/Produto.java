@@ -32,12 +32,15 @@ public class Produto {
 
     private String descricao;
 
+    private Boolean destaque;
+
     public Produto(String nome, Categoria categoria, int quantidade, String codigo, String descricao) {
         this.nome = nome;
         this.categoria = categoria;
         this.quantidade = quantidade;
         this.codigo = codigo;
         this.descricao = descricao;
+        this.destaque = false;
     }
 
     public Long getId() {
@@ -64,13 +67,18 @@ public class Produto {
         return descricao;
     }
 
+    public Boolean getDestaque() {
+        return destaque;
+    }
+
     public Produto atualizaProduto(String nome, Categoria categoria, int quantidade, String codigo,
-                                   String descricao){
+                                   String descricao, Boolean destaque){
         this.nome = nome;
         this.categoria = categoria;
         this.quantidade = quantidade;
         this.codigo = codigo;
         this.descricao = descricao;
+        this.destaque = destaque;
 
         return this;
     }

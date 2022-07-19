@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +50,7 @@ public class ProdutoService {
         Produto produto = verificaExistencia(produtoId);
         Produto produtoAtualizado = produto.atualizaProduto(produtoRequest.getNome(),
                 produtoRequest.getCategoria(),produtoRequest.getQuantidade(), produtoRequest.getCodigo(),
-                produtoRequest.getDescricao());
+                produtoRequest.getDescricao(), produtoRequest.getDestaque());
 
         return produtoRepository.save(produtoAtualizado);
     }
@@ -72,7 +73,6 @@ public class ProdutoService {
         return produto.get();
     }
 
-
     public List<Produto> listaPorCategoria(Long categoria) {
         List<Produto> listaCategorias = produtoRepository.findByCategoriaId(categoria);
 
@@ -84,4 +84,11 @@ public class ProdutoService {
 
         return listaCategoriaNome;
     }
+
+    public List<Produto> listaProdutosDestaque(){
+        List<Produto> listaDestaques = produtoRepository.findByDestaque(true);
+
+        return listaDestaques;
+    }
+
 }

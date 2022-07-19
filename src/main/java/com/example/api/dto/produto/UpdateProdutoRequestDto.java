@@ -29,13 +29,16 @@ public class UpdateProdutoRequestDto {
 
     private String descricao;
 
+    private Boolean destaque;
+
     public UpdateProdutoRequestDto(String nome, Categoria categoria, int quantidade, String codigo,
-                                   String descricao) {
+                                   String descricao, Boolean destaque) {
         this.nome = nome;
         this.categoria = categoria;
         this.quantidade = quantidade;
         this.codigo = codigo;
         this.descricao = descricao;
+        this.destaque = destaque;
     }
 
     public String getNome() {
@@ -56,6 +59,10 @@ public class UpdateProdutoRequestDto {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Boolean getDestaque() {
+        return destaque;
     }
 
     public UpdateProdutoRequestDto() {

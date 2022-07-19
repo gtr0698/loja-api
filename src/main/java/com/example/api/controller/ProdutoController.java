@@ -79,4 +79,12 @@ public class ProdutoController {
         return ResponseEntity.ok(listaProdutoNome);
     }
 
+    @GetMapping("/destaque")
+    public ResponseEntity<List<ProdutoResponseDto>>listaProdutosDestacados(){
+        List<ProdutoResponseDto> destaques = produtoService.listaProdutosDestaque()
+                .stream().map(ProdutoResponseDto::new).collect(Collectors.toList());
+
+        return ResponseEntity.ok(destaques);
+    }
+
 }

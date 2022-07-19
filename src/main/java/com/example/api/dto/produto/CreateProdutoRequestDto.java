@@ -29,6 +29,8 @@ public class CreateProdutoRequestDto {
 
     private String descricao;
 
+    private Boolean destaque;
+
     public CreateProdutoRequestDto(String nome, CategoriaRequestDto categoria, int quantidade, String codigo,
                                    String descricao) {
         this.nome = nome;
@@ -36,6 +38,7 @@ public class CreateProdutoRequestDto {
         this.quantidade = quantidade;
         this.codigo = codigo;
         this.descricao = descricao;
+        this.destaque = false;
     }
 
     public String getNome() {
@@ -56,6 +59,11 @@ public class CreateProdutoRequestDto {
 
     public String getDescricao() {
         return descricao;
+    }
+
+
+    public Boolean getDestaque() {
+        return destaque;
     }
 
     public Produto convertToModel(Categoria categoria){
