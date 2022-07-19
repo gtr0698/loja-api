@@ -13,7 +13,7 @@ public class ValidadorDeCodigoDuplicadoProduto implements ConstraintValidator<Ve
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context){
 
-        return this.produtoRepository.findByCodigo(value).isEmpty();
+        return this.produtoRepository.findByCodigo(value).isPresent();
     }
 
 }
